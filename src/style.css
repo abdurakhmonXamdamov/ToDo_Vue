@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+    --black: #000000;
+    --green: #7ED369;
+    --teal: #1abc9c;    
+    --gray: #556b7f;
+    --lightGray: #ecf0f1;
+    --darkblue: #34495e;
+    --darkGrey: #2c3e50;
+    --navyBlue: #1c2833;
+    --mutuedTeal: #66b2a4;
+    --lightGrey: #34495e;
+    --lightOrange: #7A7A7A;
+}
+
+*{
+    font-family: "Roboto", sans-serif;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(135deg, #191970, #483D8B);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo{
+    background-color: #2c3e50; 
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    max-width: 415px;
+    min-width: 414px;
+    gap: 50px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+    position: relative;
+}
+
+.todo__header{
+    color: var(--lightGray);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    margin-top: 30px;
+
+    .todo__title{
+        font-size: 27px;
+        font-weight: bold;
+
+        span{
+            color: var(--green);
+        }
+    }
+}
+
+.todo__box{
+    padding-bottom: 5px;
+    border-bottom: 1px solid #4f6460;
+    width: 100%;
+}
+
+
+.todo__btns{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 370px;
+    text-align: center;
+    margin: auto;
+
+    button{
+        font-size: 12px;
+        font-weight: bold;
+        background-color: var(--darkblue) ;
+        border: 0;
+        padding: 8px 15px;
+        transition: all .2s ease;
+        cursor: pointer;
+        flex: 1;
+        color: #ecf0f1;
+      
+        
+        &:hover{
+            background-color: var(--gray);
+        }
+
+    }
+}
+
+.todo__cards{
+    width: 100%;
+    padding: 0 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+    max-height: 300px;
+    overflow-y: auto;
+
+}
+
+.todo__cards .card{
+    background: var(--teal);
+    padding: 12px 0;
+    padding-left: 17px;
+    padding-right: 15px;
+    border-radius: 5px;
+}
+
+.todo__cards .card #completed__card{
+    color: #ffffff;
+}
+
+.todo__cards .card #remove__card{
+    color: #000000;
+}
+
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #485563;
+    border-radius: 10px;
+    border: 1px solid var(--gray);
+    cursor: pointer;
+}
+
+#card__header{
+    font-weight: bolder;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.card__edit{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span{
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+    }
+}
+
+#card__text{
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 22px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#card__footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#card__footer, #card__text{
+    color: var(--navyBlue);
+}
+
+#card__header{
+    color: var(--darkGrey)
+}
+
+#add__task{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #daf2da;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: all .2s ease;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2), -3px -5px 10px rgba(0, 0, 0, 0.12);
+
+    i{
+        font-size: 35px;
+        color: var(--green);
+    }
+
+}
+
+#add__task:hover{
+    background-color: #2CB932;
+
+   *:hover{
+     color: var(--lightGray)
+   }
+}
+
+#overlay{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transition: 200ms cubic-bezier(0.53, -0.16, 0.51, 1.18);
+    background-color: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#overlay.active{
+    pointer-events: all;
+    opacity: 1;
+}
+
+#todo__modal{
+    background: #fff;
+    text-align: center;
+    padding: 24px 24px 40px 24px;
+    border-radius: 5px;
+    position: absolute;
+    top: 60px;
+    left: 18px;
+    transform: scale(0);
+    transition: 200ms cubic-bezier(0.53, -0.16, 0.51, 1.18);
+
+    span{
+        position: absolute;
+        top: 15px;
+        right: 14px;
+        font-size: 25px;
+        color: var(--black);
+        font-weight: bold;
+        cursor: pointer;
+    }
+ 
+    h3{
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--black);
+        margin-bottom: 20px;
+    }
+}
+
+#todo__modal.active{
+    transform: scale(1);
+    z-index: 1;
+}
+
+
+.todo__form{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 15px;
+    width: 330px;
+}
+
+.todo__form input{
+    color: var(--black);
+    font-size: 12px;
+    padding: 10px 16px;
+    border-radius: 15px;
+    border: 1px solid var(--lightOrange);
+
+}
+
+.todo__form input:focus{
+    outline: 0;
+}
+
+input[name="task"]{
+    height: 70px;
+    padding-bottom: 47px;
+}
+
+
+.todo__deadline{
+    display: flex;
+    border: 1px solid var(--lightOrange);
+    border-radius: 15px;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+
+    input{
+        border: 0;
+    }
+
+    img{
+        cursor: pointer;
+    }
+}
+
+.todo__form input::placeholder{
+    color: var(--black);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#group__member{
+    padding: 10px 0px;
+    text-indent: 10px;
+    border-radius: 15px;
+    border: 1px solid var(--lightOrange);
+    cursor: pointer;
+}
+
+#group__member:focus{
+    outline: 0;
+}
+
+#modal__btn{
+    padding: 10px 60px;
+    border-radius: 15px;
+    background-color: var(--green);
+    color: var(--black);
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid var(--green);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#modal__btn:hover{
+    background: #fff;
+    color: var(--green);
+}

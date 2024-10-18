@@ -1,0 +1,36 @@
+{
+  "ToDo": [
+    {
+      "id": "a121",
+      "status": true,
+      "title": "Complete todo App",
+      "text": "Complete all the functionality of the Todo App with the help of Vue js ",
+      "date": "2024-11-01",
+      "member": "Maftuna"
+    },
+    {
+      "id": "f68d",
+      "status": true,
+      "title": "totototototo",
+      "text": "popopopopopo",
+      "date": "2024-10-22",
+      "member": "Madina"
+    },
+    {
+      "id": "9c77",
+      "status": false,
+      "title": "Start preparing Mid Term",
+      "text": "Watch tutorials for Circuit and Differential Equations and Linear Algebra",
+      "date": "2024-10-16",
+      "member": "Alamat"
+    },
+    {
+      "id": "7c3a",
+      "member": "Og'abek",
+      "date": "2024-10-10",
+      "title": "Come back dorm",
+      "text": "come back from Home to dormitory",
+      "status": true
+    }
+  ]
+}
